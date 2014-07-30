@@ -37,7 +37,7 @@
         hasErrors = true;
         emailaddress.classList.remove('good');
         emailaddress.classList.add('bad');   
-        emailaddressErr.innerHTML = "<p>Email Address is not valid.</p>"
+        emailaddressErr.innerHTML = "<p>Email Address is not valid.</p>";
         
     }if ( commentter.value.length < 1 || commentter.value.length > 150) {
         hasErrors = true;
