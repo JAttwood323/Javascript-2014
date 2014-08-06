@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <script type="text/javascript">
+            
+            /*
+             * JSON stands for JavaScript Object notation.
+             * 
+             * It's a object format that hold a key value pair.
+             */
+            
+           
+            var myjson = {};
+            
+            myjson.cars = ['mustang','honda','kia'];
+            
+            
+            myjson.hello = 'hey hows it going?';
+            myjson.coolArr = [1,2,3];
+            
+            
+            
+            console.log(myjson.cars[0]);
+            console.log(myjson['cars'][1]);
+            
+            
+            var myjson2 = {
+                "hello" : 'hey hows it going?',
+                "coolArr" : [1,2,3]
+            };
+            
+             console.log(myjson2.hello);
+             console.log(myjson2.coolArr[2]);
+             
+             
+             
+             var myArr = [];
+             
+             myArr.push({"myKey" : true});
+             
+             myArr.push( { "title": 'this is cool', "desc" : 'this is cool because I can use it' });
+             
+            
+             
+             console.log(myArr[0].myKey);
+             //console.log(myArr[0].title);
+             //console.log(myArr[0].desc);
+             
+            </script>
+    </body>
+</html>

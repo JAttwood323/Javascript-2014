@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <style>
+            div {
+                z-index: 10;
+               border-radius: 1px;
+            }
+            </style>
+            
+    </head>
+    <body>
+        <div id="test">TODO write content</div>
+        
+          <script type="text/javascript">
+            
+            /*
+             * You can get a document object using this function.
+             * this will allow you to change the HTML object on
+             * the fly with JavaScript.
+             */
+            var div = document.getElementById('test');
+            
+            
+            // with the html document object, you can change the html
+            div.innerHTML = '<p> wow it changed</p>';
+            /*
+             * You can also change the style(CSS) of the object.
+             * after the style keyword you can use CSS declarations and
+             * set a value.  They must be camel case.
+             */
+            div.style.border = '10px solid blue';
+            div.style.borderTop = '10px solid red';
+            div.style.borderRadius = '10px';
+            
+            
+            /*
+             * The document model allows you to access the HTML
+             * title and the url are two values you can access.
+             */
+            
+            //document.URL
+            //document.title
+            console.log(document.URL);
+            console.log(document.title);
+            
+            document.title = 'this is my page';
+            
+            /*
+             * We can use this function to set the document.title
+             * to any string value we like.  It is reusable.
+             */
+            
+            function changeDocumentTitle( title ){
+                document.title = title;
+            }
+            
+            // call the function and pass the param value
+            changeDocumentTitle('my page TITLE');
+            
+            
+            
+            
+            
+          </script>
+    </body>
+</html>
