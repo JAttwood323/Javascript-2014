@@ -28,7 +28,7 @@
                 "title" : 'Ad Number 5'
             });
             
-           var x = Math.floor ( Math.random()*4+1); //This selects a random number between 0-4
+           var x = Math.floor ( Math.random()*5); //This selects a random number between 0-4
            var div = document.getElementById("ad"); //This initialized "div" as the "ad" div on the HTML page
            
            div.innerHTML = myAdVar[x].text;
