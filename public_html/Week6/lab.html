@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Week 6 Lab </title>
+        <style type="text/css">
+            .contentBox {
+                width: 300px;
+                margin: 1em;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        </style>
+    </head>
+    <body>
+
+	<div id="content" class="contentBox"></div>
+
+	<input type="button" id="showResults" value="Show Results" />
+
+	<script type="text/javascript">
+
+		 //http://canvas.site40.net/demopage.html	
+		// XML HTTP Request
+		var xhr = new XMLHttpRequest();
+		var content = document.getElementById('content');  
+		var showResults = document.getElementById('showResults');  
+		var url = "demo.php?page=";
+                var step = 1;
+		
+                showResults.addEventListener('click',makeAJAXCall);
+		
+           
+				//This statement takes the server response and makes it a string, returns it as showResults and continues the loop
+		function callback() {
+			var response = xhr.responseText;  
+						
+			content.innerHTML += response;
+                        step++;
+                        
+
+		}
+		
+		xhr.onreadystatechange = function() { 
+									
+		   if (xhr.readyState==4 && xhr.status==200) {  //only runs if website is ready
+			callback();  
+		   } 
+		};  
+		
+		
+        //If the user scrolls to the end of the page it will load more information from another URL for 3 more steps
+                function makeAJAXCall(){
+                    if ( step < 5 ) {                      
+                        xhr.open('GET', url+step, true);  
+                        xhr.send();   
+                    }
+                }
+		
+		
+                //When the page has to load it will make the AJAX Call
+		window.addEventListener('load', makeAJAXCall);
+
+       // A function saying if while the user is scrolling and there is more info make the AJAX Call
+                function scrollCheck() {
+			if ( (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {				
+				makeAJAXCall();
+			}
+		}
+		
+                //When the user scrolls this will call the above function
+		window.addEventListener("scroll", scrollCheck);
+		
+		
+		
+		 
+
+		
+		
+	</script>
+    </body>
+</html>
