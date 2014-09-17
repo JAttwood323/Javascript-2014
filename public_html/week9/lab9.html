@@ -32,6 +32,7 @@
             var play = document.getElementById('play');
              var pos1 = 35;
              var pos2 = 35;
+             var racetime = setInterval(playButt, 100);
            function randNum(max) {
                return Math.ceil(Math.random()*max) + 1;
            }
@@ -62,8 +63,8 @@
                 ctx.fillStyle = "red";
                 ctx.fillRect(pos2,10,50,30);
             }
-            drawRect1(pos1);
-            drawRect2(pos2);
+            drawRect1();
+            drawRect2();
             
             function drawClear(){
                 ctx.clearRect(0,0,can.width,can.height);
@@ -71,24 +72,10 @@
             }
             
             function playBtn(){
-               /* var randy=0;
-                var finish=600;
-                var pos1 = 35;
-                var pos2 = 35;
-                while(pos1 < finish && pos2 < finish){
-                    drawClear();
-                    drawFinishLine();
-                    randy=randNum(10);
-                    pos1=pos1+randy;
-                    randy=randNum(10);
-                    pos2=pos2+randy;
-                    drawRect1(pos1);
-                    drawRect2(pos2);
-                }
-                */
-               
-               
-               var racetime = setInterval(playButt, 100);
+                
+                pos1 = 35;
+                pos2 = 35;
+               racetime = setInterval(playButt, 100);
                
                 
             }
@@ -104,16 +91,17 @@
                     pos1=pos1+randy;
                     randy=randNum(10);
                     pos2=pos2+randy;
-                    drawRect1(pos1);
-                    drawRect2(pos2);
-                }
-                
-                if(pos1>pos2){
-                    clearInterval(racetime);
-                    p1wins();
+                    drawRect1();
+                    drawRect2();
                 }
                 else{
-                    clearInterval(racetime);
+                   clearInterval(racetime);
+                }
+                
+                if( pos1>finish && pos1>pos2){
+                    p1wins();
+                }
+                else if ( pos2>finish){
                     p2wins();
                 }
             }
