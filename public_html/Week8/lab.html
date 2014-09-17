@@ -26,7 +26,8 @@
              fadeOut = document.getElementById('fadeOut'),
              moveDiv = document.getElementById('moveDiv'),
              fading = 1,
-             fadetime= setInterval(fadeOutit, 100);
+             fadetime= setInterval(fadeOutit, 100),
+             movetime= setInterval(moveMe, 100),
             divPosLeft = 0;
     
             fadeIn.addEventListener('click', fadeInBtn);
@@ -78,14 +79,17 @@
             }
             
             function divMove(){
+                movetime= setInterval(moveMe, 100);
                 
-                divPosLeft = divPosLeft + 10;
-                div.style.left = divPosLeft + "px";
                 
             }
             
             
-            
+            function moveMe(){
+                divPosLeft = divPosLeft + 10;
+                div.style.left = divPosLeft + "px";
+                
+            }
             
         </script>
         
