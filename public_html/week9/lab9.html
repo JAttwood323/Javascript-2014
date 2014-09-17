@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lab 9</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <style type="text/css">
+            canvas {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        
+
+        <canvas id="race" width="750" height="150"></canvas>
+        <br />
+        <button id="play">Play</button>
+        <script type="text/javascript">
+            /*
+                We will be creating a canvas race game. We will have two teams, one red and the other blue, that will race to the finish line.
+
+                Using Canvas create two rectangles, one red and the other blue. They should be the same width and height. 
+                When moving the rectangles make sure to generate a random number to move the x position of each rectangle. 
+                The minimum should always be greater than zero. It should be called twice to get a unique number for each rectangle. 
+                Once the rectangle reaches the finish line, display the winner. A play button should appear to reset the race. 
+                Once the race is started the play button should be hidden again.
+             */
+            
+            var can = document.getElementById('race');
+            var ctx = can.getContext('2d');
+            var play = document.getElementById('play');
+             var pos1 = 35;
+             var pos2 = 35;
+           function randNum(max) {
+               return Math.ceil(Math.random()*max) + 1;
+           }
+           
+           function drawFinishLine(){
+               
+                    ctx.beginPath();
+                    ctx.moveTo(650, 0); //x, y
+                    ctx.lineTo(650, can.height); 
+                    ctx.stroke();
+           }
+           
+           drawFinishLine();
+           
+           /*function divMove(){
+                
+                var randy=randNum(10);
+                divPosLeft = divPosLeft + randy;
+                div.style.left = divPosLeft + "px";
+                
+            *}*/
+           
+           function drawRect1(){
+                ctx.fillStyle = "blue";
+                ctx.fillRect(pos1,100,50,30);
+            }
+            function drawRect2(){
+                ctx.fillStyle = "red";
+                ctx.fillRect(pos2,10,50,30);
+            }
+            drawRect1(pos1);
+            drawRect2(pos2);
+            
+            function drawClear(){
+                ctx.clearRect(0,0,can.width,can.height);
+                
+            }
+            
+            function playBtn(){
+               /* var randy=0;
+                var finish=600;
+                var pos1 = 35;
+                var pos2 = 35;
+                while(pos1 < finish && pos2 < finish){
+                    drawClear();
+                    drawFinishLine();
+                    randy=randNum(10);
+                    pos1=pos1+randy;
+                    randy=randNum(10);
+                    pos2=pos2+randy;
+                    drawRect1(pos1);
+                    drawRect2(pos2);
+                }
+                */
+               
+               
+               var racetime = setInterval(playButt, 100);
+               
+                
+            }
+            
+            function playButt(){
+                var randy=0;
+                var finish=600;
+                
+                if(pos1 < finish && pos2 < finish){
+                    drawClear();
+                    drawFinishLine();
+                    randy=randNum(10);
+                    pos1=pos1+randy;
+                    randy=randNum(10);
+                    pos2=pos2+randy;
+                    drawRect1(pos1);
+                    drawRect2(pos2);
+                }
+                
+                if(pos1>pos2){
+                    clearInterval(racetime);
+                    p1wins();
+                }
+                else{
+                    clearInterval(racetime);
+                    p2wins();
+                }
+            }
+            
+            play.addEventListener('click', playBtn);
+            
+            function p1wins(){
+                ctx.fillStyle = "blue";
+                ctx.font = "16pt Helvetica";
+                ctx.fillText("Player One", 200, 100);
+                ctx.fillStyle = "red";
+                ctx.font = "16pt Helvetica";
+                ctx.fillText("WINS", 200, can.height-10);
+    
+            }
+            function p2wins(){
+                ctx.fillStyle = "blue";
+                ctx.font = "16pt Helvetica";
+                ctx.fillText("Player Two", 200, 100);
+                ctx.fillStyle = "red";
+                ctx.font = "16pt Helvetica";
+                ctx.fillText("WINS", 200, can.height-10);
+    
+            }
+        </script>
+    </body>
+</html>
