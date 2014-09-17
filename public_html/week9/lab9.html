@@ -96,12 +96,16 @@
                 }
                 else{
                    clearInterval(racetime);
+                   winner();
                 }
+            }
+            
+            function winner(){
                 
-                if( pos1>finish && pos1>pos2){
+                if( pos1>599 && pos1>pos2){
                     p1wins();
                 }
-                else if ( pos2>finish){
+                else if ( pos2>599){
                     p2wins();
                 }
             }
