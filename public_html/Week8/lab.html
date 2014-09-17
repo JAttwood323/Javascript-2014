@@ -2,7 +2,7 @@
 
 <html>
     <head>
-        <title>supply a title</title>
+        <title>Lab8</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         <style>
@@ -21,34 +21,62 @@
         
         <script>
             
-            var div = document.getElementById('lab');
-            var fadeIn = document.getElementById('fadeIn');
-            var fadeOut = document.getElementById('fadeOut');
-            var moveDiv = document.getElementById('moveDiv');
-            var fading = 1;
-            var fadeTime = setInterval (fadeDiv, 100);
-            var divPosLeft = 0;
+            var div = document.getElementById('lab'),
+             fadeIn = document.getElementById('fadeIn'),
+             fadeOut = document.getElementById('fadeOut'),
+             moveDiv = document.getElementById('moveDiv'),
+             fading = 1,
+             fadetime= setInterval(fadeOutit, 100);
+            divPosLeft = 0;
     
             fadeIn.addEventListener('click', fadeInBtn);
             fadeOut.addEventListener('click', fadeOutBtn);
             moveDiv.addEventListener('click', divMove);
+ 
+ 
+            setTimeout(function(){alert('Hi')}, 500);
+            function fadeInit(){   
+
+                fading = fading + 0.1;
+                div.style.opacity = fading;
+                console.log("in");
+                
+               if(fading > 1.1){
+                    clearInterval(fadetime);
+                    console.log("clears");
+                }
+
+                
+            }
             
-            function fadeDiv() {
+            function fadeOutit(){
                 
                 fading = fading - 0.1;
                 div.style.opacity = fading;
-
-            }
-                
-            function fadeInBtn(){    
-                setInterval(fadeDiv, 10);
-                
+                console.log("out");
+                if(fading < 0){
+                    clearInterval(fadetime);
+                    console.log("clears");
+                }
             }
             
-            function fadeOutBtn(){
-                clearInterval(fadetime);
+            function fadeInBtn(){
+                
+               // for(var i=0; i<11; i+=1){
+               // setTimeout(fadeInit,100);
+            //}
+            fadetime= setInterval(fadeInit, 100);
+                
             }
-            fadeOut.addEventListener('click',fadeOutBtn);  
+            function fadeOutBtn(){
+                
+               // for(var i=0; i<11; i+=1){
+               //setTimeout(fadeOutit,100);
+           //}
+         
+            fadetime= setInterval(fadeOutit, 100);
+            }
+            
             function divMove(){
                 
                 divPosLeft = divPosLeft + 10;
