@@ -1,0 +1,229 @@
+INDEX.html
+
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Week 5 Lab</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" type="text/css" href="style.css" />
+
+    </head>
+    <body>
+        
+    <form name="mainform" id="mainform" action="">
+	<div id="content">
+	<fieldset>
+		<legend>Personal information:</legend>		
+
+                <label for="firstname">First Name:</label> 
+                <input id="name" name="name" type="text" size="30" placeholder="Full name" /> 
+                <span class="error" id="err_name"></span> <br /><br />
+				
+				<label for="lastname"> Last Name:</label> 
+                <input id="lastname" name="lastname" type="text" size="30" placeholder="Full name" /> 
+                <span class="error" id="err_lastname"></span> <br /><br />
+
+                <label for="email">E-mail:</label> 
+                <input id="email" name="email" type="text" size="30" placeholder="sample@email.com"  /> 
+                <span class="error" id="err_email"></span> <br /><br />
+
+                <label for="comments">Comments:</label> 
+                <textarea id="comments" name="comments"></textarea> 
+                <span class="error" id="err_comments"></span> <br /><br />
+
+		<input type="button" value="submit" onclick="submitForm();" />
+            </fieldset>
+         </div>
+    </form>
+        
+        <script type="text/javascript" src="script.js"></script>
+    </body>
+</html>
+
+
+_____________________________________________________________________________________________________________________________
+
+STYLE.CSS
+
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 29, 2014, 6:01:00 PM
+    Author     : GFORTI
+*/
+
+html, body {
+		font-size: 120%;
+	}
+
+	label {
+		font-weight: bold;
+		font-size: 130%;
+	}
+
+	#content {
+		width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	input {
+		font-size: 120%;
+
+	}
+
+	input[type=button], button {
+		border: 1px solid #6E329D;
+		border-radius : 25px;
+		color: #fff;
+		text-decoration: none;
+		padding: 0.2em 0.5em;
+		margin: 0.5em;
+		margin-left: auto;
+		margin-right: auto;
+
+		background: linear-gradient(to bottom, #e570e7 0%,#c85ec7 47%,#a849a3 100%); /* W3C */
+	}
+
+	input[type=text] {
+		border: 2px solid lightblue;
+	}
+
+	input[type=button]:hover, button:hover {
+		background: linear-gradient(to right, #e570e7 0%,#c85ec7 47%,#a849a3 100%); /* W3C */	
+	}
+
+	input[type=text]:hover {
+		background-color: #e9f6fd;
+	}
+
+
+	.error {
+		color: red;
+	}
+
+	input[type=text].bad {
+		border: 2px solid red;
+	}
+
+	input[type=text].good {
+		border: 2px solid green;
+	}
+
+_______________________________________________________________________________________________________________
+
+script.js
+
+
+    /*
+		I realize not all the logic in here is the best it can be, I wanted to show knowledge of the language and show that I was able to complete it differently and receive the same results.
+		I also added a 'passes' line if the information is correctly inputted, just to maked things a little easier.
+	*/
+  function submitForm() {
+    
+    var firstname = document.getElementById("name");
+    var firstnameErr = document.getElementById("err_name");
+	var lastname = document.getElementById("lastname");
+    var lastnameErr = document.getElementById("err_lastname");
+    var emailaddress = document.getElementById("email");
+    var emailaddressErr = document.getElementById("err_email");
+    var commentter = document.getElementById("comments");
+    var commentterErr = document.getElementById("err_comments");
+    
+    var hasErrors = false;
+    
+
+    if ( SpaceAlphaValidate( firstname.value ) === true ) {
+                hasErrors = true;
+                firstname.classList.remove('good');
+                firstname.classList.add('bad');
+                firstnameErr.innerHTML = "First name must start with a Capital letter ";
+        } 
+        
+        else if (!firstname.value.length) {
+                hasErrors = true;
+                firstname.classList.remove('good');
+                firstname.classList.add('bad');
+                firstnameErr.innerHTML = "First Name Length No Good";
+        } 
+        else {
+                firstname.classList.remove('bad');
+                firstname.classList.add('good');
+                firstnameErr.innerHTML = "First name passes";
+        }
+		
+	if (lastname.value.length  &&  SpaceAlphaValidate( firstname.value ) === false ) {
+        lastname.classList.remove('bad');
+        lastname.classList.add('good');        
+        lastnameErr.innerHTML = "Last Name Passes";
+        
+    } else {
+        hasErrors = true;
+		if( !lastname.value.length ){
+			lastnameErr.innerHTML = "Last name length invalid";
+		}
+		else{
+			lastnameErr.innerHTML = "Last name must start with a Capital letter";
+		}
+        lastname.classList.remove('good');
+        lastname.classList.add('bad');       
+             
+    }
+	
+	
+    if (emailaddress.value.length && EmailValidate(emailaddress.value)===true) {
+        emailaddress.classList.remove('bad');
+        emailaddress.classList.add('good');        
+        emailaddressErr.innerHTML = "EMail passes";
+        
+    } else {
+        hasErrors = true;
+		if(EmailValidate(emailaddress.value)===false){
+        emailaddressErr.innerHTML = "Email must start with characters, have a @ symbol, have another set of characters have a period and end in 3 characters";
+		}
+		else{
+        emailaddressErr.innerHTML = "Please enter an Email Address";
+		}
+        emailaddress.classList.remove('good');
+        emailaddress.classList.add('bad');   
+        
+    }
+	
+	if ( commentter.value.length < 1 || commentter.value.length > 150) {
+        hasErrors = true;
+        commentter.classList.remove('good');
+        commentter.classList.add('bad');       
+        commentterErr.innerHTML = "<p>Comment is not valid.</p>";  
+        
+    } else {
+        commentter.classList.remove('bad');
+        commentter.classList.add('good');        
+        commentterErr.innerHTML = '';     
+    }
+    
+    
+}
+	
+function SpaceAlphaValidate( str ) {
+        var alphaRegex = /[a-zA-Z ]+/;
+        return alphaRegex.test(str);			
+}
+
+function strip_HTML(str) {
+        var findHtml = /<(.|\n)*?>/gi;
+        return str.replace(findHtml,"");
+}
+
+function EmailValidate ( str ) {
+        
+        var emailRegex = /^[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
+        return emailRegex.test(str);
+}
