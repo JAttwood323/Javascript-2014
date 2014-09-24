@@ -21,7 +21,6 @@ function phoneValidate ( str){
 
 var userdata = []; //initializes JSON array
 
-    
 
 function submitForm(){
     
@@ -86,7 +85,7 @@ function submitForm(){
                 hasErrors = true;
                 phone.classList.remove('good');
                 phone.classList.add('bad');       
-                phoneErr.innerHTML = 'Please Enter E-mail';
+                phoneErr.innerHTML = 'Please Enter Phone Number';
         
     } 
     
@@ -94,7 +93,7 @@ function submitForm(){
                 hasErrors = true;
                 phone.classList.remove('good');
                 phone.classList.add('bad');
-                phoneErr.innerHTML = "Poop";
+                phoneErr.innerHTML = "Phone number invalid";
     }
     
             else {
@@ -146,10 +145,10 @@ function storager(name, phone, email, comments){ //stores data to local storage
             
     
 }
-
 function printout(){
     
         var storageData = ( typeof(localStorage.getItem('userdata')) === 'string' ? localStorage.getItem('userdata') : '' );
+        console.log(storageData);
         var tablewrite = document.getElementById("tableData");
         var cellText = "";
         var localData = localStorage.getItem('userdata');
@@ -160,7 +159,12 @@ function printout(){
          }
       tablewrite.innerHTML=cellText; //writes table based on string from for loop
     }
-
+    
+    function onload(){ //writes table initially based on local storage data
+        userdata=( typeof(localStorage.getItem('userdata')) === 'string' ? JSON.parse(localStorage.getItem('userdata')) : [] );
+        printout();
+    }
+onload();
 
 
 
