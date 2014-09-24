@@ -1,0 +1,1 @@
+https://github.com/pivotal/jasmine/tree/master/dist
